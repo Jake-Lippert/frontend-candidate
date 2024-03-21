@@ -1,6 +1,40 @@
-<p>
-    Implement search in this component
-</p>
-<p>
-    Implement details in the <a [routerLink]="['/details/123']">details component</a>
-</p>
+<form class="searchForm">
+    <input name="name"
+           placeholder="Search people"
+           [(ngModel)]="name"
+           [ngModelOptions]="{standalone: true}"
+           (keyup.enter)="onSearch()" />
+
+    <select name="favoriteColor"
+            [(ngModel)]="favoriteColor"
+            [ngModelOptions]="{standalone: true}">
+        <option value="" disabled>Favorite color</option>
+        <option *ngFor="let option of colorOptions" [value]="option.value">
+            {{option.text}}
+        </option>
+    </select>
+
+    <button type="button"
+            [disabled]="searchState === 'InProgress'"
+            (click)="onSearch()">
+        Search
+    </button>
+</form>
+
+<section *ngIf="(searchResults$ | async)?.length; else noResults">
+    <h1>Search Results</h1>
+
+    <ul class="resultGrid">
+        <li *ngFor="let result of searchResults$ | async">
+            <result-card [href]="'/details/' + result.id">
+                {{result.name}}
+            </result-card>
+        </li>
+    </ul>
+</section>
+
+<ng-template #noResults>
+    <p class="dataStatus">
+        {{getNoResultsMessage()}}
+    </p>
+</ng-template>

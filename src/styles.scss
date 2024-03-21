@@ -3,9 +3,17 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 14px;
+    background-color: $background;
     color: $darkGrey;
     margin: 0;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    &:link, &:visited, &:active, &:hover {
+        color: $primary;
+        text-decoration: none;
+    }
 }

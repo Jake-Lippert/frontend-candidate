@@ -1,0 +1,28 @@
+@import '../styles/colors';
+
+span {
+	text-transform: capitalize;
+	color: $grey;
+}
+
+ol {
+	list-style: none;
+	padding-inline-start: 0px;
+
+	li {
+		margin-top: 1.5em;
+
+		blockquote {
+			margin-inline-start: 0px;
+			margin-block-end: .5em;
+
+			&:before, &:after {
+				content: '"';
+			}
+		}
+	}
+}
+
+.dataStatus {
+	text-align: center;
+}

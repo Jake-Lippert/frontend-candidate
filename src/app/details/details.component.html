@@ -1,6 +1,28 @@
 <div>
-    Implement details in this component.
+    <!-- 
+        I just have this as 'Back to search' without the 'results'
+        as I'm not familiar with how to use a service to keep track of that state,
+        and local storage doesn't feel right for this
+    -->
+    <a [routerLink]="['/']">Back to search</a>
+
+    <ng-container *ngIf="person$ | async as person; else noContent">
+        <h1>{{person.name}}</h1>
+
+        <span>Favorite Color: {{person.favoriteColor}}</span>
+
+        <ol>
+            <li *ngFor="let quote of person.quotes">
+                <blockquote>{{quote.quote}}</blockquote>
+
+                <span>{{quote.likes}} Likes</span>
+            </li>
+        </ol>
+    </ng-container>
 </div>
-<p>
-    Implement search in the <a [routerLink]="['/']">search component</a>
-</p>
+
+<ng-template #noContent>
+    <p class="dataStatus">
+        {{getNoContentMessage()}}
+    </p>
+</ng-template>
